@@ -36,15 +36,16 @@ int main (int argc, char **argv, char **env) {
         }
 
         // Send count value to Vbuddy
-        vbdHex(4, (int(top->count) >> 16) & 0xF);
-        vbdHex(3, (int(top->count) >> 8) & 0xF);
-        vbdHex(2, (int(top->count) >> 4) & 0xF);
-        vbdHex(1, (int(top->count)) & 0xF);
-        vbdCycle(i+1);
+        // vbdHex(4, (int(top->count) >> 16) & 0xF);
+        // vbdHex(3, (int(top->count) >> 8) & 0xF);
+        // vbdHex(2, (int(top->count) >> 4) & 0xF);
+        // vbdHex(1, (int(top->count)) & 0xF);
+        // vbdCycle(i+1);
         // end of Vbuddy output section
+        vbdPlot(int(top->count), 0, 255);
     
         top->rst = (i<2) | (i==15);
-        top->en = (i>4);
+        top->en = vbdFlag();
         if(Verilated::gotFinish()) exit(0);
     }
 
