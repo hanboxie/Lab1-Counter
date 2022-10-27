@@ -1,9 +1,30 @@
 ## Task 1
-Steps 1 and 2
+# Steps 1 and 2
 - Forked the github repo to my own github account
 - Cloned the repo to my device using Linux Terminal
-9 Opened the folder in VS Code
-Created Folders + compiled code, pretty straight forward nothing special to note.
+- Opened the folder in VS Code
+- pretty straight forward nothing special to note.
 
+# Step 3
+If reset is high, coutner value is set to 1 bit of 0 on the next cycle. Else count is incremented by 1 if enabler is high and extended to 8 bits with 0's on the next cycle.
 
-1 clk cycle = 1 ps
+# Step 4
+Test bench created.
+
+# Step 5
+Created and authorised doit shell.
+
+# Step 6
+1 clk change = 1 ps
+Note: eval comes before the enable or resets therefore it is delayed by 1 cycle if we say 0 is the first cycle.
+
+## Test Yourself Challenge
+1. Modify the testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting. You may also need to change the stimulus for rst.
+
+Variable i denotes the clock cycle.
+
+We first note the counter is not incrementing when i is 0 and 1 since the reset is active. On cycle 2 and 3 enable is not high so no addition is happening. Therefore additon starts when i = 4. Thus counter will reach 0x9 when i = 13.
+
+To pause, we simply turn enable off for i = 13, 14, 15. Reset is also removed when i = 15.
+
+![Code](image/chal1-code)
