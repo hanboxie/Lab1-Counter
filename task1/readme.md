@@ -27,7 +27,7 @@ We first note the counter is not incrementing when i is 0 and 1 since the reset 
 
 To pause, we simply turn enable off for i = 14, 15, 16. Reset is also removed when i = 15.
 
-![Code](image/chal1-code)
-![Waveform](image/l1t1w1)
+![Code](t1image/chal1-code)
+![Waveform](t1image/l1t1w1)
 
 As seen, the counter reaches 0x9 when i=13, then pauses 3 extra cycles.
