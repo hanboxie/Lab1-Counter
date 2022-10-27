@@ -30,7 +30,7 @@ int main (int argc, char **argv, char **env) {
             top->eval ();
         }
         top->rst = (i<2);
-        top->en = (i>4 & i!=13 & i != 14 & i != 15);
+        top->en = (i>4 & i!=14 & i != 15 & i != 16);
         if(Verilated::gotFinish()) exit(0);
     }
     tfp->close();

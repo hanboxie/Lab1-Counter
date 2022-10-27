@@ -25,6 +25,9 @@ Variable i denotes the clock cycle.
 
 We first note the counter is not incrementing when i is 0 and 1 since the reset is active. On cycle 2 and 3 enable is not high so no addition is happening. Therefore additon starts when i = 4. Thus counter will reach 0x9 when i = 13.
 
-To pause, we simply turn enable off for i = 13, 14, 15. Reset is also removed when i = 15.
+To pause, we simply turn enable off for i = 14, 15, 16. Reset is also removed when i = 15.
 
 ![Code](image/chal1-code)
+![Waveform](image/l1t1w1)
+
+As seen, the counter reaches 0x9 when i=13, then pauses 3 extra cycles.
