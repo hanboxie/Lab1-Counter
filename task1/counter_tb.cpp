@@ -29,8 +29,8 @@ int main (int argc, char **argv, char **env) {
             top->clk = !top->clk;
             top->eval ();
         }
-        top->rst = (i<2);
-        top->en = (i>4 & i!=14 & i != 15 & i != 16);
+        top->rst = (i<2 | i==8);
+        top->en = (i>4);
         if(Verilated::gotFinish()) exit(0);
     }
     tfp->close();

@@ -34,4 +34,15 @@ As seen, the counter reaches 0x9 when i=13, then pauses 3 extra cycles.
 
 ### 2 - The current counter has a synchronous reset. To implement asynchronous reset, you can change line 11 of counter.sv to detect change in rst signal. (See notes.)
 
-Definiton: An asynchronous reset activates as soon as the reset signal is asserted. A synchronous reset activates on the active clock edge when the reset signal is asserted.
+Definiton: A synchronous reset activates on the active clock edge when the reset signal is asserted. An asynchronous reset activates as soon as the reset signal is asserted.
+
+Adding posedge rst makes reset asynchronous because the component is now updated as soon as reset occurs instead of being updated every positive clock cycle.
+
+![Code](t1image/chal2-code.png)
+
+Set reset when i = 8 to test. 
+
+![Code](t1image/chal2-code2.png)
+
+Resultant waveform meets expectations as the reset occurs directly after without needing to wait for a positive clock edge.
+![Waveform](t1image/l1t1w2.png)
