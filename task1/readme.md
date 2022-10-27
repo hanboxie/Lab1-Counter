@@ -18,8 +18,8 @@ Created and authorised doit shell.
 1 clk change = 1 ps
 Note: eval comes before the enable or resets therefore it is delayed by 1 cycle if we say 0 is the first cycle.
 
-## Test Yourself Challenge
-1. Modify the testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting. You may also need to change the stimulus for rst.
+## Test Yourself Challenge 
+# 1 - Modify the testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting. You may also need to change the stimulus for rst.
 
 Variable i denotes the clock cycle.
 
@@ -27,7 +27,11 @@ We first note the counter is not incrementing when i is 0 and 1 since the reset 
 
 To pause, we simply turn enable off for i = 14, 15, 16. Reset is also removed when i = 15.
 
-![Code](t1image/chal1-code)
-![Waveform](t1image/l1t1w1)
+![Code](t1image/chal1-code.png)
+![Waveform](t1image/l1t1w1.png)
 
 As seen, the counter reaches 0x9 when i=13, then pauses 3 extra cycles.
+
+# 2 - The current counter has a synchronous reset. To implement asynchronous reset, you can change line 11 of counter.sv to detect change in rst signal. (See notes.)
+
+Definiton: An asynchronous reset activates as soon as the reset signal is asserted. A synchronous reset activates on the active clock edge when the reset signal is asserted.
