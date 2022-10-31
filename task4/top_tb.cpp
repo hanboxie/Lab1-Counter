@@ -1,4 +1,4 @@
-#include "Vcounter.h"
+#include "Vtop.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "vbuddy.cpp"
@@ -8,13 +8,13 @@ int main (int argc, char **argv, char **env) {
     int clk;
 
     Verilated::commandArgs(argc, argv);
-    // init top verlog instance
-    Vcounter* top = new Vcounter;
+    // init top verilog instance
+    Vtop* top = new Vtop;
     // init trace dump
     Verilated::traceEverOn(true);
     VerilatedVcdC* tfp = new VerilatedVcdC;
     top->trace (tfp,99);
-    tfp->open ("counter.vcd");
+    tfp->open ("top.vcd");
 
     // init Vbuddy
     if (vbdOpen()!=1) return (-1);
@@ -24,6 +24,7 @@ int main (int argc, char **argv, char **env) {
     top->clk = 1;
     top->rst = 0;
     top->en = 0;
+    top->bcd = 1;
 
     // run simulation for many clock cycles
     for (int i=0; i<300; i++) {
@@ -42,9 +43,6 @@ int main (int argc, char **argv, char **env) {
         vbdHex(1, (int(top->bcd)) & 0xF);
         vbdCycle(i+1);
         // end of Vbuddy output section
-
-        top->myDecoder->x = top->myCounter->count;
-        
 
         if(Verilated::gotFinish()) exit(0);
     }
