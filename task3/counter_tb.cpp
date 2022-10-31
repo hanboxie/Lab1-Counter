@@ -22,7 +22,7 @@ int main (int argc, char **argv, char **env) {
 
     // initialize simulation inputs
     top->clk = 1;
-    top->rst = 1;
+    top->rst = 0;
     top->en = 0;
 
     // run simulation for many clock cycles
@@ -35,11 +35,19 @@ int main (int argc, char **argv, char **env) {
             top->eval ();
         }
 
-        vbdPlot(int(top->count), 0, 255);
-    
-        top->rst = (i<2) | (i==15);
+        // Send count value to Vbuddy
+        vbdHex(4, (int(top->count) >> 16) & 0xF);
+        vbdHex(3, (int(top->count) >> 8) & 0xF);
+        vbdHex(2, (int(top->count) >> 4) & 0xF);
+        vbdHex(1, (int(top->count)) & 0xF);
+        vbdCycle(i+1);
+        // end of Vbuddy output section
+
+
+        top->val = vbdValue();
+        vbdSetMode(1);
         top->en = vbdFlag();
-        top->reg = 
+
         if(Verilated::gotFinish()) exit(0);
     }
 
